@@ -1,21 +1,22 @@
-package com.lnf.springboot;
+package com.lnf.lock;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ProxyTest  {
+public class T02_TestAtomic {
     private static ReentrantLock lock = new ReentrantLock();
     static Long count2 =0l;
     static AtomicLong count1= new AtomicLong(0l);
     static LongAdder count3 =new LongAdder();
     public static void main(String[] args) {
         Thread[] threads = new Thread[1000];
+        // 倒计时锁
         CountDownLatch latch = new CountDownLatch(threads.length);
         for (int j= 0; j < threads.length; j++) {
             threads[j]=new Thread(()->{
-                    count1.incrementAndGet();
+                count1.incrementAndGet();
                 latch.countDown();
             });
         }

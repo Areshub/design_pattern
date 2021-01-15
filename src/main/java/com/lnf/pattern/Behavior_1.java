@@ -15,7 +15,7 @@ package com.lnf.pattern;
  * 父类中的抽象方法由子类实现，子类执行的结果会影响父类的结果，这导致一种反向的控制结构，它提高了代码阅读的难度。
  * 由于继承关系自身的缺点，如果父类添加新的抽象方法，则所有子类都要改一遍。
  */
-public class behavior_1 {
+public class Behavior_1 {
 
 }
 
