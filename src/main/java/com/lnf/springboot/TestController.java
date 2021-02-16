@@ -2,6 +2,7 @@ package com.lnf.springboot;
 
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -41,23 +43,8 @@ public class TestController {
     }
 
     @RequestMapping( "/add")
-    public void test(HttpServletRequest request){
-
-        //方法一：通过遍历的方法进行遍历
-        String FileName="";
-        HttpSession session=request.getSession();//获取session
-        Object name=session.getAttribute("AddFileName");
-        System.out.println(name);
-        Enumeration enumeration =session.getAttributeNames();//获取session中所有的键值对
-//遍历enumeration中的键值对
-        String[] names=session.getValueNames();
-        for(int i=0;i<names.length;i++){
-            if(names[i].equals("AddFileName")){
-                FileName+=session.getValue(names[i])+"@";
-                System.out.println(FileName);
-            }
-        }
-
+    public void test(HttpServletRequest request, HttpServletResponse response){
+        response.addHeader("headtoken","11111");
     }
 
 }
